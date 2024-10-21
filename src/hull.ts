@@ -6,10 +6,10 @@
 
 'use strict';
 
-const intersect = require('./intersect.js');
-const grid = require('./grid.js');
-const formatUtil = require('./format.js');
-const convexHull = require('./convex.js');
+import { intersect } from './intersect';
+import { grid } from './grid'
+import formatUtil from './format'
+import { convex as convexHull } from './convex';
 
 function _filterDuplicates(pointset) {
     const unique = [pointset[0]];
@@ -160,7 +160,7 @@ function _concave(convex, maxSqEdgeLen, maxSearchArea, grid, edgeSkipList) {
     return convex;
 }
 
-function hull(pointset, concavity, format) {
+export function hull(pointset:any, concavity:number, format?:any) {
     let maxEdgeLen = concavity || 20;
 
     const points = _filterDuplicates(_sortByX(formatUtil.toXy(pointset, format)));
@@ -176,8 +176,8 @@ function hull(pointset, concavity, format) {
         occupiedArea[1] * MAX_SEARCH_BBOX_SIZE_PERCENT
     ];
 
-    const convex = convexHull(points);
-    const innerPoints = points.filter(function(pt) {
+    const convex:any = convexHull(points);
+    const innerPoints = points.filter(function(pt:any) {
         return convex.indexOf(pt) < 0;
     });
 
@@ -193,4 +193,3 @@ function hull(pointset, concavity, format) {
 const MAX_CONCAVE_ANGLE_COS = Math.cos(90 / (180 / Math.PI)); // angle = 90 deg
 const MAX_SEARCH_BBOX_SIZE_PERCENT = 0.6;
 
-module.exports = hull;

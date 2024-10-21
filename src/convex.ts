@@ -28,12 +28,10 @@ function _lowerTangent(pointset) {
 }
 
 // pointset has to be sorted by X
-function convex(pointset) {
+export function convex(pointset) {
     const upper = _upperTangent(pointset),
           lower = _lowerTangent(pointset);
     const convex = lower.concat(upper);
     convex.push(pointset[0]);  
     return convex;  
 }
-
-module.exports = convex;

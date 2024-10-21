@@ -79,8 +79,6 @@ Grid.prototype = {
     }
 };
 
-function grid(points, cellSize) {
+export function grid(points, cellSize) {
     return new Grid(points, cellSize);
 }
-
-module.exports = grid;

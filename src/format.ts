@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 
     toXy: function(pointset, format) {
         if (format === undefined) {
